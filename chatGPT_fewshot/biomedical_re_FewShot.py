@@ -82,11 +82,11 @@ def get_guide_prompt(file, out_prompt=CHEMO_GUIDELINES_PROMPT,shot=1):
     out_prompt+= "Sentence: {}\n Output: "
     return out_prompt
 
-def finetuning(int_file,out_putfile):
+def finetuning(int_file,sample_file,out_putfile):
     with open(out_putfile, "w", newline='') as outf:
         writer = csv.writer(outf)
 
-        guide_prompt=get_guide_prompt(int_file)
+        guide_prompt=get_guide_prompt(sample_file)
         flag = 0
         for line in int_file:
             input_sentence=line['sentence']
@@ -116,4 +116,4 @@ if __name__=="__main__":
     input_file=read_file(input_file_path)
     sample_file=read_file(sample_file_path)
 
-    finetuning(input_file,output_file_path)
+    finetuning(input_file,sample_file,output_file_path)
